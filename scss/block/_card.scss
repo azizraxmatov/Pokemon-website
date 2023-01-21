@@ -1,0 +1,125 @@
+ .header_inner{
+   @media(max-width:$tablet) {
+      display: flex;
+      flex-direction: row;
+      align-items:center;
+      justify-content: center;
+      padding: 0px;
+   }
+ 
+ 
+ }
+ .pokemon {
+   display: flex;
+   flex-direction: column;
+   align-items:center;
+   
+    &_buttons {
+       display: flex;
+       gap: 35px;
+       @media(max-width:$tablet) {
+         gap: 20px;
+      }
+      @media(max-width:$phone) {
+        gap: 10px;
+      }
+       &_add {
+          width: 240px;
+          height: 60px;
+          @include bold;
+          @include btn;
+          @media(max-width:$tablet) {
+           width: 100px;
+           height: 25px;
+           display: flex;
+           justify-content: center;
+           align-items:center;
+           font-size: 15px;
+         }
+         @media(max-width:$phone) {
+      }
+       }
+
+       &_search {
+          width: 240px;
+          height: 60px;
+          @include bold;
+          @include btn;
+          @media(max-width:$tablet) {
+            padding: 0;
+            margin: 0;
+            width: 100px;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            font-size: 10px;
+            .search-item{
+               @media(max-width:$tablet) {
+                  width: 10px;
+                  height: 10px;
+                  margin-right: 3px;
+               }
+            }
+          }
+       }
+    }
+
+    &_cards {
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: space-around;
+      //  align-items: center;
+       gap: 25px;
+       @media(max-width:$tablet) {
+     }
+     @media(max-width:$phone) {
+  }
+       li{
+         display: flex;
+         flex-direction: column;
+         text-decoration: none;
+         width: 307px;
+         height: 423px;
+         background: #ffffff;
+         border: 2px solid #000000;
+         border-radius: 20px;
+         position: relative;
+         // justify-content: center;
+         // align-items: center;
+         .textcontent{
+            display: flex;
+            flex-direction: column;
+            border-top:  2px solid black;
+            width: 307px;
+            position: absolute;
+            bottom: 0px;
+            padding: 30px;
+            line-height: 28px;
+         .name{
+            @include bold;
+            margin-bottom: 0
+         }
+         .name2{
+            @include boldsmall;
+            // padding-bottom: 10px;
+         }
+         .weight{
+            @include bold;
+         }
+      }
+      .imgcontent{
+         display: flex;
+         justify-content: center;
+         align-items:center;
+         padding-top: 50px;
+         // position: absolute;
+         .img{
+            display: flex;
+            width: 157px;
+            height: 157px;
+         } 
+      }
+       }
+    }
+ }
