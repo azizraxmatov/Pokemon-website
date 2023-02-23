@@ -23,77 +23,27 @@ body {
   flex-direction: column;
   align-items: center;
 }
-.pokemon_buttons {
-  display: flex;
-  gap: 35px;
+.pokemon form {
+  margin-top: 100px;
 }
-@media (max-width: 834px) {
-  .pokemon_buttons {
-    gap: 20px;
-  }
-}
-@media (max-width: 375px) {
-  .pokemon_buttons {
-    gap: 10px;
-  }
-}
-.pokemon_buttons_add {
-  width: 240px;
-  height: 60px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-size: 24px;
-  border: 2px solid #000000;
-  border-radius: 15px;
-}
-@media (max-width: 834px) {
-  .pokemon_buttons_add {
-    width: 100px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 15px;
-  }
-}
-.pokemon_buttons_search {
-  width: 240px;
-  height: 60px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-size: 24px;
-  border: 2px solid #000000;
-  border-radius: 15px;
-}
-@media (max-width: 834px) {
-  .pokemon_buttons_search {
-    padding: 0;
-    margin: 0;
-    width: 100px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 10px;
-  }
-}
-@media (max-width: 834px) and (max-width: 834px) {
-  .pokemon_buttons_search .search-item {
-    width: 10px;
-    height: 10px;
-    margin-right: 3px;
-  }
-}
-.pokemon_cards {
+.pokemon form .form-cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 25px;
 }
-.pokemon_cards li {
+.pokemon .add {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 25px;
+}
+.pokemon .card {
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   text-decoration: none;
+  align-items: center;
   width: 307px;
   height: 423px;
   background: #ffffff;
@@ -101,40 +51,30 @@ body {
   border-radius: 20px;
   position: relative;
 }
-.pokemon_cards li .textcontent {
-  display: flex;
-  flex-direction: column;
-  border-top: 2px solid black;
-  width: 307px;
-  position: absolute;
-  bottom: 0px;
-  padding: 30px;
-  line-height: 28px;
-}
-.pokemon_cards li .textcontent .name {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-size: 24px;
-  margin-bottom: 0;
-}
-.pokemon_cards li .textcontent .name2 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 20px;
-}
-.pokemon_cards li .textcontent .weight {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-size: 24px;
-}
-.pokemon_cards li .imgcontent {
+.pokemon .card .imgcontent {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 50px;
 }
-.pokemon_cards li .imgcontent .img {
+.pokemon .card .imgcontent .img {
   display: flex;
   width: 157px;
   height: 157px;
+}
+.pokemon .card .name {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 0;
+}
+.pokemon .card .name2 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+}
+.pokemon .card .weight {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
 }/*# sourceMappingURL=main.css.map */
