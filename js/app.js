@@ -9,7 +9,12 @@ var elSearchPokemon = document.querySelector('[data-search-pokemon]')
 var elSelectPokemon = document.querySelector('[data-select-pokemon]')
 var elSortPokemon = document.querySelector('[data-sort-pokemon]')
 var elTemplate = document.querySelector('[data-template-card]')
+var elFavoritesList = document.querySelector("[data-favorite-list]")
+var elIdBtn = document.querySelector("[data-id-pokemon")
+var elAddBtn = document.querySelector("[data-add-pokemon")
 
+const favorites = getFavorites();
+renderFavorites(favorites);
 renderPokemon(pokemons);
 elForm.addEventListener("submit", function (evt){
     evt.preventDefault();
@@ -34,26 +39,25 @@ elForm.addEventListener("submit", function (evt){
 
 function renderPokemon(pokemons) {
     elBoxAdd.innerHTML = "";
-   
     pokemons.forEach((pokemon) => {
         elBoxAdd.appendChild(createElBox(pokemon));        
     });
 }
 
 function createElBox(pokemon) {
-    const card = elTemplate.content.cloneNode(true);
-    card.querySelector("img").src = pokemon.img;
-    card.querySelector("h2").textContent = pokemon.name;
-    card.querySelector("p").textContent = pokemon.type;
-    card.querySelector("[data-pokemon-height]").textContent = pokemon.height;
-    card.querySelector("[data-pokemon-weight]").textContent = pokemon.weight;
-    card.querySelector("[data-delete-button]").dataset.pokemonId = pokemon.id;
+    const elPokemonsBox = elTemplate.content.cloneNode(true);
+    elPokemonsBox.querySelector("img").src = pokemon.img;
+    elPokemonsBox.querySelector("h2").textContent = pokemon.name;
+    elPokemonsBox.querySelector("p").textContent = pokemon.type;
+    elPokemonsBox.querySelector("[data-pokemon-height]").textContent = pokemon.height;
+    elPokemonsBox.querySelector("[data-pokemon-weight]").textContent = pokemon.weight;
+    // elPokemonsBox.querySelector("[data-delete-button]").dataset.pokemonId = pokemon.id;
 
-    // card.querySelector("[data-favourite-button]").dataset.id = pokemon.id;
-    // card.querySelector("[data-favourite-button]").textContent = 
-    // favorites.includes(pokemon.id) ? "added" : "add";
+    elPokemonsBox.querySelector("[data-favorite-btn]").dataset.id = pokemon.id;
+    elPokemonsBox.querySelector("[data-favorite-btn]").textContent = 
+    favorites.includes(pokemon.id) ? "added" : "add";
 
-    return card;
+    return elPokemonsBox;
 }
 
 
@@ -69,8 +73,11 @@ elSortPokemon.addEventListener('change', (e) =>{
     renderPokemon(sortPokemon(pokemons));
 })
 
+elBoxAdd.addEventListener('click', (e) =>{
+    onFavoriteClick(e);
+});
+
 function sortPokemon(pokemons) {
- 
 
     if (elSortPokemon.value === "A-z") {
       pokemons.sort((a, b)=> a.name.toLowerCase().charCodeAt() - b.name.toLowerCase().charCodeAt());  
@@ -95,18 +102,54 @@ function sortPokemon(pokemons) {
     }
     return pokemons
 }
-elBoxAdd.addEventListener("click" , (e)=>{
-if (!e.target.matches("[data-delete-button]")) return;
-    const elT= e.target.dataset.pokemonId;
-deletePokemon(elT); 
-});
+function onFavoriteClick(evt) {
+    const el = evt.target.closest("[data-favorite-btn]");
+    if(!el) return;
+    const id = +el.dataset.id;
+    if(favorites.includes(id)){
+        favorites.splice(favorites.indexOf(id), 1);
+    }else{
+            favorites.push(id);
+        }
+        setFavorites(favorites);
+        renderPokemon(pokemons)
+    };
+
+    function setFavorites(favorites) {
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        renderFavorites(favorites);
+    };
+
+    function renderFavorites(favorites) {
+        let html = "";
+        favorites.forEach((item) => {
+            const pokemon = pokemons.find((pokemon) => {
+                return pokemon.id === item;
+            });
+            html += `<span class = "badge bg-primary m-2">${pokemon.name}</span>`
+         });
+    elFavoritesList.innerHTML = html;
+    };
+
+    function getFavorites(favorites) {
+        const stringsPokemons = localStorage.getItem("favorites") || "[]";
+        return JSON.parse(stringsPokemons);
+    }
 
 
- function deletePokemon(id) {
-    const index = pokemons.findIndex((pokemon)=> pokemon.id === +id);
-    pokemons.splice(index , 1);
-    renderPokemon(pokemons);
- };
+
+// elBoxAdd.addEventListener("click" , (e)=>{
+// if (!e.target.matches("[data-delete-button]")) return;
+//     const elT= e.target.dataset.pokemonId;
+// deletePokemon(elT); 
+// });
+
+
+//  function deletePokemon(id) {
+//     const index = pokemons.findIndex((pokemon)=> pokemon.id === +id);
+//     pokemons.splice(index , 1);
+//     renderPokemon(pokemons);
+//  };
 
 
 
